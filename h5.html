@@ -6,19 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Math Comparison</h2>
-    <p id="demo"></p>
+    <button id="checkAccess">Check Admin Access</button>
+    <h4 id="demo"></h4>
 
     <script>
-        const mysteryLevel = Math.floor(Math.random() * 50) + 1;
-        const highValue = Math.max(10, 20, mysteryLevel);
-        const lowValue = Math.min(10, 20, mysteryLevel);
+        const user = {
+            name: "Saman Narayan",
+            age: 14,
+            isAdmin: true
+        };
 
-        document.getElementById("demo").innerHTML = `
-            Mystery Level: ${mysteryLevel}<br>
-            Highest value among 10, 20, and mystery level: ${highValue}<br>
-            Lowest value among 10, 20, and mystery level: ${lowValue}
-        `;
+        document.getElementById("checkAccess").addEventListener("click", function () {
+            const hasAge = "age" in user;
+            const canAccessAdminFeatures = hasAge && user.age >= 18 && user.isAdmin;
+
+            document.getElementById("demo").innerHTML = `
+                UserName: ${user.name}<br>
+                Age: ${hasAge ? user.age : "Not available"}<br>
+                Age property exists: ${hasAge}<br>
+                Admin: ${user.isAdmin ? "Yes" : "No"}<br>
+                ${canAccessAdminFeatures ? "Access Granted" : "Access Denied"}
+            `;
+
+            delete user.age;
+        });
     </script>
 </body>
 </html>
