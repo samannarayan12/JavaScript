@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Statistics Widget</h1>
+    <div id="stats"></div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let userScore = Number("75");
+
+        document.getElementById("stats").innerHTML = `
+            <p>Random number: ${randomNumber}</p>
+            <p>User score: ${userScore}</p>
+            <p>Difference: ${Math.abs(randomNumber - userScore)}</p>
+            <p>Rounded square root of the user score: ${Math.round(Math.sqrt(userScore))}</p>
+            <p>π: ${Math.PI}</p>
+            <p>"50" multiplied by 2 using implicit conversion: ${"50" * 2}</p>
+        `;
+    </script>
+</body>
+</html>
