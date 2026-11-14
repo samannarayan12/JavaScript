@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Reminder</title>
+</head>
+<body>
+    <h1>Event Reminder</h1>
+    <form onsubmit="showReminder(); return false;">
+        <label for="event-date">Choose a past date:</label>
+        <input type="date" id="event-date" required>
+        <button type="submit">Show reminder</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function showReminder() {
+            var date = new Date(document.getElementById("event-date").value + "T00:00:00");
+            var today = new Date();
+            var years = today.getFullYear() - date.getFullYear();
+            years -= Number(today.getMonth() < date.getMonth() ||
+                (today.getMonth() == date.getMonth() && today.getDate() < date.getDate()));
+
+            document.getElementById("result").textContent = "Year: " + date.getFullYear() +
+                ", Month: " + date.toLocaleString("en", { month: "long" }) +
+                ", Day: " + date.getDate() + ". Full years passed: " + years + ". " +
+                (years > 0 ? "It has been more than a year since that date."
+                    : "It has been less than a year since that date.");
+        }
+    </script>
+</body>
+</html>
